@@ -1,45 +1,25 @@
-// src/components/GeneratedImage.js
 import React, { useEffect } from "react";
-import html2canvas from "html2canvas";
 
-const GeneratedImage = ({ name, address, userClass }) => {
-  const printImage = () => {
-    const printArea = document.getElementById("printArea");
-    html2canvas(printArea).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = imgData;
-      link.download = "generated_image.png";
-      link.click();
-    });
-  };
-
+const GeneratedImage = ({ name, address, userClass, onImageCreated }) => {
   useEffect(() => {
     if (name && address && userClass) {
-      printImage();
+      // Simulate image creation logic here
+      // For example, you might have an API call to generate the image
+      console.log("Image created with:", { name, address, userClass });
+
+      // Call the onImageCreated prop to trigger redirection
+      onImageCreated();
     }
-  }, [name, address, userClass]);
+  }, [name, address, userClass, onImageCreated]);
 
   return (
-    <div
-      id="printArea"
-      style={{
-        marginTop: "20px",
-        padding: "20px",
-        border: "1px solid black",
-        backgroundColor: "#f0f0f0",
-      }}
-    >
-      <h2>Generated Details</h2>
-      <p>
-        <strong>Name:</strong> {name}
-      </p>
-      <p>
-        <strong>Address:</strong> {address}
-      </p>
-      <p>
-        <strong>Class:</strong> {userClass}
-      </p>
+    <div>
+      <h2>Generated Image</h2>
+      {/* Display the generated image here */}
+      <p>Name: {name}</p>
+      <p>Address: {address}</p>
+      <p>User Class: {userClass}</p>
+      {/* Replace with actual image if available */}
     </div>
   );
 };
