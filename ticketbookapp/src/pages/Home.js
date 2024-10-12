@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
 import GeneratedImage from "../components/GeneratedImage";
-import { useActiveAccount } from "thirdweb/react"; // Import the hook
+import { useActiveAccount } from "thirdweb/react";
 import CB from "../components/CB"; // Import the connect button component
 
 const Home = () => {
@@ -11,31 +11,32 @@ const Home = () => {
     name: "",
     address: "",
     userClass: "",
+    price: 0, // Add price to form data
   });
 
   const navigate = useNavigate(); // Initialize the navigate function
 
   const handleFormSubmit = (data) => {
-    setFormData(data);
+    setFormData(data); // Set the form data from the Form component
   };
 
-  // This function will handle image generation and redirection
   const handleImageCreated = () => {
-    // Perform any actions you need after image generation
-    navigate("/mint"); // Redirect to the mint page
+    navigate("/mint", { state: formData }); // Pass formData including price to mint page
   };
 
   return (
     <div style={{ padding: "20px" }}>
       <CB />
-      <h1>Image Generator</h1>
       <Form onSubmit={handleFormSubmit} />
-      {formData.name && (
+      
+      {/* Only display the GeneratedImage component after the form is filled */}
+      {formData.name && formData.address && formData.userClass && (
         <GeneratedImage
           name={formData.name}
           address={formData.address}
           userClass={formData.userClass}
-          onImageCreated={handleImageCreated} // Pass the handler to the GeneratedImage component
+          price={formData.price} // Ensure price is passed
+          onImageCreated={handleImageCreated} 
         />
       )}
     </div>

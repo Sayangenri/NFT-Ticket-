@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@thirdweb-dev/react": "^4.9.4",
     "@thirdweb-dev/sdk": "^4.0.99",
+    "@walletconnect/window-getters": "^1.0.1",
     "ethers": "^5.7.2",
     "html2canvas": "^1.4.1",
     "https": "^1.0.0",
